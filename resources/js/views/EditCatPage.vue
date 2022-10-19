@@ -41,6 +41,7 @@
             <el-form-item>
               <el-button type="primary" @click="onSubmit(formRef)" :disabled="!savingAllowed">Сохранить</el-button>
             </el-form-item>
+
           </el-form>
 
         </el-card>
@@ -96,7 +97,7 @@ const getCatData = (id: any) => {
   axios.post('/api/getCatData', {
     id: id
   })
-  .then(res=>{
+  .then((res: any)=>{
     // если редирект
     if(res.data.redirect) {
       alert('Ошибка! Котейка не найден.')
@@ -135,7 +136,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   })
 }
 
-
+// обновляем фотографию котика (запрос на сторонний сервер делаем с нашего бэка)
 const refreshPhoto = () => {
   loading.value = true
   axios.post('/api/refreshPhoto')
@@ -147,7 +148,6 @@ const refreshPhoto = () => {
     loading.value = false
   })
 }
-
 </script>
 
 <style scoped>

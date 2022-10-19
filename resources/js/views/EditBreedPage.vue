@@ -118,9 +118,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     }
   })
 }
-
-
-
 </script>
 
 <style scoped>
