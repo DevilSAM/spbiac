@@ -92,7 +92,7 @@ const savingAllowed = computed(()=>{
   return form.name && form.image && form.age && form.breed_id || true
 })
 
-const getCatData = (id) => {
+const getCatData = (id: any) => {
   axios.post('/api/getCatData', {
     id: id
   })
@@ -139,7 +139,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
 const refreshPhoto = () => {
   loading.value = true
   axios.post('/api/refreshPhoto')
-  .then(res=>{
+  .then((res: any)=>{
     form.image = res.data[0].url
     console.log(res.data[0].url)
   })
