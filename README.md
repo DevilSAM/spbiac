@@ -35,23 +35,23 @@ cp .env.example .env
 ### Сгенерировать ключи, запустить миграцию БД и засеять её исходными данными
 
 ```bash
-composer install
-php artisan key:generate
+docker-compose exec app composer install
+docker-compose exec app php artisan key:generate
 ```
 
 
 ```bash
-php artisan migrate
+docker-compose exec app php artisan migrate
 ```
 
 
 ```bash
-php artisan db:seed --class=DatabaseSeeder
+docker-compose exec app php artisan db:seed --class=DatabaseSeeder
 ```
 
 ### Также нужно создать символическую ссылку для хранилища
 ```bash
-php artisan storage:link
+docker-compose exec app php artisan storage:link
 ```
 
 
