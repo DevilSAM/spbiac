@@ -1,0 +1,19 @@
+a {
+  text-decoration: none;
+}
+
+.hover-pointed {
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.el-table {
+  --el-table-border-color: black;
+  .warning-row {
+    --el-table-tr-bg-color: var(--el-color-warning-light-9);
+  }
+  .danger-row {
+    --el-table-tr-bg-color: var(--el-color-danger-light-9);
+  }
+}
