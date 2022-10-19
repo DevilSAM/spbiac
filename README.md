@@ -10,7 +10,6 @@
 ### клонировать проект к себе на компьютер
 ```bash
 git clone https://github.com/DevilSAM/spbiac.git spbiac
-cd spbiac
 ```
 
 ### перейти в директорию проекта
@@ -18,17 +17,16 @@ cd spbiac
 cd spbiac
 ```
 
+### создать файл окружения .env из образца
+
+```bash
+cp .env.example .env
+```
+
 ### запустить сборку и развёртывание в докере
 ```bash
 docker-compose build app
 docker-compose up -d
-```
-
-
-### создать файл .env из образца и прописать в нём настройки для базы данных
-
-```bash
-cp .env.example .env
 ```
 
 
