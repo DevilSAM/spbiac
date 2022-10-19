@@ -20,6 +20,8 @@ class CatsController extends Controller
 
 
     /**
+     * Функция Получает всех кошек (с полными данными о их породах)
+     *
      * @return Collection|array
      */
     public function catsList(): Collection|array
@@ -27,7 +29,10 @@ class CatsController extends Controller
         return Cat::with('breed')->get();
     }
 
+
     /**
+     * Функция возвращает данные о конкретной кошке по её ID
+     *
      * @param Request $request
      * @return mixed
      */
@@ -44,6 +49,8 @@ class CatsController extends Controller
 
 
     /**
+     * Изменение данных кошки по ее ID или создание новой записи
+     *
      * @param Request $request
      * @return mixed
      */
@@ -74,6 +81,8 @@ class CatsController extends Controller
 
 
     /**
+     * Удаление записи о конкретной кошке
+     *
      * @param Request $request
      * @return mixed
      */
@@ -93,6 +102,8 @@ class CatsController extends Controller
 
 
     /**
+     * Получение рандомной фотографии кошки со стороннего сайта
+     *
      * @return mixed
      * @throws GuzzleException
      */
@@ -103,12 +114,6 @@ class CatsController extends Controller
 
         return json_decode($response->getBody(), true);;
     }
-
-
-
-
-
-
 
 
 }

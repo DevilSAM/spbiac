@@ -16,6 +16,8 @@ class BreedsController extends Controller
 
 
     /**
+     * Функция возвращает список пород, сортированных по названию
+     *
      * @return mixed
      */
     public function breedsList()
@@ -25,6 +27,8 @@ class BreedsController extends Controller
 
 
     /**
+     * Функция возвращает данные конкретной породы по её ID
+     *
      * @param Request $request
      * @return mixed
      */
@@ -36,6 +40,8 @@ class BreedsController extends Controller
 
 
     /**
+     * Функция сохранения данных о породе (изменение или создание новой)
+     *
      * @param Request $request
      * @return mixed
      */
@@ -66,6 +72,8 @@ class BreedsController extends Controller
 
 
     /**
+     * Функция удаляет запись о породе по её ID (все кошки тоже удаляются)
+     *
      * @param Request $request
      * @return mixed
      */
