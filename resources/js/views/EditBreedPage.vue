@@ -12,20 +12,27 @@
             </div>
           </template>
 
-          <el-form :model="form" label-width="150px">
-            <el-form-item label="Название">
+          <el-form
+            ref="formRef"
+            :model="form"
+            :rules="rules"
+            label-width="120px"
+            status-icon
+          >
+            <el-form-item label="Название" prop="name">
               <el-input v-model="form.name" />
             </el-form-item>
-            <el-form-item label="Описание">
+
+            <el-form-item label="Описание" prop="description">
               <el-input v-model="form.description" />
             </el-form-item>
-            <el-form-item label="Прод. жизни">
-<!--              <el-input v-model="form.long_life" />-->
+
+            <el-form-item label="Прод. жизни" prop="long_life">
               <el-input-number v-model="form.long_life" :min="1" :max="10" />
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="onSubmit">Сохранить</el-button>
+              <el-button type="primary" @click="onSubmit(formRef)" :disabled="!savingAllowed">Сохранить</el-button>
             </el-form-item>
 
           </el-form>
@@ -37,32 +44,52 @@
   </div>
 </template>
 
-<script setup>
-import InputText from "@/components/Forms/InputText.vue";
-import {ref, reactive, onMounted} from "vue";
+<script setup lang="ts">
+import type { FormInstance, FormRules } from 'element-plus'
+import {ref, reactive, onMounted, computed} from "vue";
 import {useRoute} from 'vue-router'
 import router from "../router";
 import axios from "axios";
 
 const route = useRoute()
 const breeds = ref([])
+const formRef = ref<FormInstance>()
 
+// правила для валидации формы
+const rules = reactive<FormRules>({
+  name: [
+    {required: true, message: 'Введите название породы', trigger: 'blur'},
+  ],
+  description: [
+    {required: true, message: 'Введите описание', trigger: 'blur'},
+    { min: 10, message: 'Минимум 10 символов', trigger: 'blur' },
+  ],
+})
+
+// дейсвтия при подключении компонента
 onMounted(()=>{
   console.log(route.params.id)
   getBreedData(route.params.id)
 })
 
+// чтобы задизейблить кнопку сохранения
+const savingAllowed = computed(()=>{
+  return form.name && form.description && form.long_life
+})
+
+// данные формы
 const form = reactive({
   name: '',
   description: '',
   long_life: 1,
 })
 
-const getBreedData = (id) => {
+// получение данных о доступных породах кошек
+const getBreedData = (id: any) => {
   axios.post('/api/getBreedData', {
     id: id
   })
-    .then(res=>{
+    .then((res: any) =>{
       if(res.data) {
         form.name = res.data.name
         form.description = res.data.description
@@ -71,19 +98,29 @@ const getBreedData = (id) => {
     })
 }
 
-const onSubmit = (e) => {
-  e.preventDefault()
-  axios.post('/api/saveBreed', {
-    data: form,
-    breed_id: route.params?.id
+// отправка данных на сервер для сохранения изменений
+const onSubmit = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid: any, fields: any) => {
+    if (valid) {
+      axios.post('/api/saveBreed', {
+        data: form,
+        breed_id: route.params?.id
+      })
+        .then((res: any) =>{
+          if (res.data.success) {
+            router.push('/breeds')
+          }
+        })
+
+    } else {
+      console.log('error submit!', fields)
+    }
   })
-    .then(res=>{
-      console.log(res.data)
-      if (res.data.success) {
-        router.push('/breeds')
-      }
-    })
 }
+
+
+
 </script>
 
 <style scoped>
