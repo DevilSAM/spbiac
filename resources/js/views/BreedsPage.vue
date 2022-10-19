@@ -62,7 +62,7 @@ const getCatsList = () => {
 
 // удаление породы
 const deleteBreed = (id, idx) => {
-  if (confirm('Удалить эту породу?')) {
+  if (confirm('Все кошки этой породы будут также удалены!')) {
     axios.post('/api/deleteBreed', {
       id: id
     })
