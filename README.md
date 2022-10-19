@@ -35,7 +35,7 @@ cp .env.example .env
 ### Сгенерировать ключи, запустить миграцию БД и засеять её исходными данными
 
 ```bash
-composer insta
+composer install
 php artisan key:generate
 ```
 
