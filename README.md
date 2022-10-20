@@ -30,30 +30,38 @@ docker-compose up -d
 ```
 
 
-### Сгенерировать ключи, запустить миграцию БД и засеять её исходными данными
+
+## - Если у вас на компьютере установлен Linux или macOS:
+### Запустить набор скриптов из файла scripts.sh 
+Будут выполнены: утсановка зависимостей, генерация ключей, миграция бд, засеивание бд, создание символьных ссылок, установка нужных библиотек и сборка фронта.
+```bash
+./scripts.sh
+```
+
+
+## - Если у вас на компьютере установлен Windows:
+### Выполнить эти команды поочередно
 
 ```bash
 docker-compose exec app composer install
-docker-compose exec app php artisan key:generate
 ```
 
+```bash
+docker-compose exec app php artisan key:generate
+```
 
 ```bash
 docker-compose exec app php artisan migrate
 ```
 
-
 ```bash
 docker-compose exec app php artisan db:seed --class=DatabaseSeeder
 ```
 
-### Также нужно создать символическую ссылку для хранилища
 ```bash
 docker-compose exec app php artisan storage:link
 ```
 
-
-### Установить необходимые пакеты для node и запустить сборку фронта
 ```bash
 npm install
 ```
@@ -62,5 +70,8 @@ npm install
 npm run build
 ```
 
-## перейти в браузере по адресу 
+
+
+
+## Перейдите в браузере по адресу 
 https://localhost:8000
