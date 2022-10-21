@@ -61,12 +61,16 @@ class CatsController extends Controller
         $cat_id = $request->input('cat_id');
         if ($cat_id > 0) {
             $cat = Cat::find($cat_id);
+            // старую картинку удаляем, если она была
+            $this->deleteImage($cat->image);
         }  else {
             $cat = new Cat();
         }
 
         try {
+            // сохраняем новую картинку локально и получаем путь к ней
             $image_local_path = $this->storeImage($data['image']);
+            // записываем новые данные и сохраняем в БД
             $cat->name = $data['name'];
             $cat->age = $data['age'];
             $cat->breed_id = $data['breed_id'];
@@ -82,6 +86,8 @@ class CatsController extends Controller
     }
 
     /**
+     * Сохранение фотографии котика в локальном хранилище
+     *
      * @param $url
      * @return string
      */
@@ -93,6 +99,17 @@ class CatsController extends Controller
         Storage::put('public/' . $path, $contents);
 
         return '/storage/' . $path;
+    }
+
+
+    /**
+     * Удаляем из локального хранилища старую фотку котика, чтобы не захламлять сторэдж
+     *
+     * @param $path
+     */
+    private function deleteImage($path): void
+    {
+        Storage::delete(str_replace('storage', 'public', $path));
     }
 
 
