@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Контроллер для кошек
@@ -65,10 +66,11 @@ class CatsController extends Controller
         }
 
         try {
+            $image_local_path = $this->storeImage($data['image']);
             $cat->name = $data['name'];
             $cat->age = $data['age'];
             $cat->breed_id = $data['breed_id'];
-            $cat->image = $data['image'];
+            $cat->image = $image_local_path;
             $cat->save();
 
             return ['success'=> true];
@@ -77,6 +79,20 @@ class CatsController extends Controller
             d($e, 1);
             return ['success'=> false, 'error'=>$e];
         }
+    }
+
+    /**
+     * @param $url
+     * @return string
+     */
+    private function storeImage($url): string
+    {
+        $contents = file_get_contents($url);
+        $name = substr($url, strrpos($url, '/') + 1);
+        $path = 'images/' . time() . '_' . $name;
+        Storage::put('public/' . $path, $contents);
+
+        return '/storage/' . $path;
     }
 
 
@@ -112,7 +128,7 @@ class CatsController extends Controller
         $client = new Client();
         $response = $client->request('GET', $url);
 
-        return json_decode($response->getBody(), true);;
+        return json_decode($response->getBody(), true);
     }
 
 
