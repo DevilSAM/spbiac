@@ -90,7 +90,7 @@ const form = reactive({
 })
 
 const savingAllowed = computed(()=>{
-  return form.name && form.image && form.age && form.breed_id || true
+  return form.name && form.image && form.age && form.breed_id && !loading.value
 })
 
 const getCatData = (id: any) => {
@@ -142,7 +142,6 @@ const refreshPhoto = () => {
   axios.post('/api/refreshPhoto')
   .then((res: any)=>{
     form.image = res.data[0].url
-    console.log(res.data[0].url)
   })
   .finally(()=>{
     loading.value = false
