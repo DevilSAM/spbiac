@@ -61,15 +61,17 @@ class CatsController extends Controller
         $cat_id = $request->input('cat_id');
         if ($cat_id > 0) {
             $cat = Cat::find($cat_id);
-            // старую картинку удаляем, если она была
-            $this->deleteImage($cat->image);
+            // если фотка обновлена, то старую картинку удаляем, если она была
+            if($cat->image !== $data['image']) {
+                $this->deleteImage($cat->image);
+            }
         }  else {
             $cat = new Cat();
         }
 
         try {
-            // сохраняем новую картинку локально и получаем путь к ней
-            $image_local_path = $this->storeImage($data['image']);
+            // если новая картинка, то сохраняем её локально и получаем путь к ней
+            $image_local_path = $cat->image !== $data['image'] ? $this->storeImage($data['image']) : $data['image'];
             // записываем новые данные и сохраняем в БД
             $cat->name = $data['name'];
             $cat->age = $data['age'];
