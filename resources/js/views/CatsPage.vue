@@ -9,32 +9,32 @@
         <router-link :to="`/editCat/0`">
           <el-button
             type="success"
-          >Добавить котейку <el-icon :size="20" class="ms-3"><CirclePlus /></el-icon> </el-button>
+          >Add a cat <el-icon :size="20" class="ms-3"><CirclePlus /></el-icon> </el-button>
         </router-link>
 
         <el-table :data="cats" border class="mt-3" :row-class-name="tableRowClassName">
-          <el-table-column prop="image" label="Фото">
+          <el-table-column prop="image" label="Photo">
           <template #default="scope">
             <el-image :src="`${scope.row.image}`" :fit="`contain`" class="cat-photo " />
           </template>
           </el-table-column>
-          <el-table-column prop="name" label="Имя" />
-          <el-table-column prop="age" label="Возраст" />
-          <el-table-column prop="breed.name" label="Порода" />
-          <el-table-column label="Действия">
+          <el-table-column prop="name" label="Name" />
+          <el-table-column prop="age" label="Age" />
+          <el-table-column prop="breed.name" label="Breed" />
+          <el-table-column label="Actions">
             <template #default="scope">
               <router-link :to="`/editCat/${scope.row.id}`">
                 <el-button
                   size="small"
                   type="primary"
-                >Изменить</el-button>
+                >Change</el-button>
               </router-link>
               <el-button
                 class="ms-3"
                 size="small"
                 type="danger"
                 @click="deleteCat(scope.row.id, scope.$index)"
-              >Удалить</el-button>
+              >Delete</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -65,7 +65,7 @@ const getCatsList = () => {
 // удаление конкретного котейки
 const deleteCat = (id, idx) => {
 
-  if (confirm('Удалить котейку?')) {
+  if (confirm('Delete this cat?')) {
     axios.post('/api/deleteCat', {
       id: id
     })

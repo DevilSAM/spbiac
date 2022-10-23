@@ -15,8 +15,8 @@ class BreedSeeder extends Seeder
     public function run()
     {
         Breed::create([
-            'name' => "Манул",
-            'description' => 'Очень злой',
+            'name' => "Manul",
+            'description' => 'Very dangerous cat',
             'long_life' => 15,
         ]);
     }

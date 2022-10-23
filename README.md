@@ -1,29 +1,29 @@
 # CAT_APP
 
-Можно вести учет своих котиков. 
+Manage your cats 
 
-## Подразумевается, что у вас уже установлен Docker на компьютере
-Для запуска вам понадобится docker.
+## Assumes that you have Docker installed
+This app runs with docker so you need to install it first if you don't have it yet
 
-## Установка
+## Installation
 
-### клонировать проект к себе на компьютер
+### Clone the project
 ```bash
 git clone https://github.com/DevilSAM/spbiac.git spbiac
 ```
 
-### перейти в директорию проекта
+### Go to the created app directory
 ```bash
 cd spbiac
 ```
 
-### создать файл окружения .env из образца
+### Create .env file using the example one
 
 ```bash
 cp .env.example .env
 ```
 
-### запустить сборку и развёртывание в докере
+### Run building the app with docker
 ```bash
 docker-compose build app
 docker-compose up -d
@@ -31,16 +31,16 @@ docker-compose up -d
 
 
 
-## - Если у вас на компьютере установлен Linux или macOS:
-### Запустить набор скриптов из файла scripts.sh 
-Будут выполнены: утсановка зависимостей, генерация ключей, миграция бд, засеивание бд, создание символьных ссылок, установка нужных библиотек и сборка фронта.
+## - If you have Linux or macOS:
+### Run scripts.sh file
+It'll install composer dependencies, generate security keys, migrate and seed database, make storage links, install needed nodejs libraries and build frontend
 ```bash
 sh scripts.sh
 ```
 
 
-## - Если у вас на компьютере установлен Windows:
-### Выполнить эти команды поочередно
+## - If you have Windows:
+### Run theese commands one by one
 
 ```bash
 docker-compose exec app composer install
@@ -73,5 +73,5 @@ npm run build
 
 
 
-## Перейдите в браузере по адресу 
+## Now the app is available in the browser
 https://localhost:8000

@@ -8,7 +8,7 @@
       <router-link to="/cats">
         <el-card shadow="hover" class="box-card mt-5 text-center mx-auto">
           <el-image src="assets/images/cat.webp" :fit="`cover`" />
-          <h3>Кошки</h3>
+          <h3>Cats</h3>
         </el-card>
       </router-link>
     </el-col>
@@ -17,7 +17,7 @@
       <router-link to="/breeds">
         <el-card shadow="hover" class="box-card mt-5 text-center mx-auto">
           <el-image src="assets/images/cats_breed.webp" :fit="`cover`" />
-          <h3>Породы кошек</h3>
+          <h3>Breeds</h3>
         </el-card>
       </router-link>
     </el-col>

@@ -7,8 +7,8 @@
 
           <template #header>
             <div class="card-header">
-              <h2 v-if="route.params.id > 0">Изменить породу</h2>
-              <h2 v-else>Добавить породу</h2>
+              <h2 v-if="route.params.id > 0">Change the Breed</h2>
+              <h2 v-else>Add a Breed</h2>
             </div>
           </template>
 
@@ -19,20 +19,20 @@
             label-width="120px"
             status-icon
           >
-            <el-form-item label="Название" prop="name">
+            <el-form-item label="Name" prop="name">
               <el-input v-model="form.name" />
             </el-form-item>
 
-            <el-form-item label="Описание" prop="description">
+            <el-form-item label="Description" prop="description">
               <el-input v-model="form.description" />
             </el-form-item>
 
-            <el-form-item label="Прод. жизни" prop="long_life">
+            <el-form-item label="Long Life" prop="long_life">
               <el-input-number v-model="form.long_life" :min="1" :max="10" />
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="onSubmit(formRef)" :disabled="!savingAllowed">Сохранить</el-button>
+              <el-button type="primary" @click="onSubmit(formRef)" :disabled="!savingAllowed">Save</el-button>
             </el-form-item>
 
           </el-form>
@@ -58,11 +58,11 @@ const formRef = ref<FormInstance>()
 // правила для валидации формы
 const rules = reactive<FormRules>({
   name: [
-    {required: true, message: 'Введите название породы', trigger: 'blur'},
+    {required: true, message: 'Enter a breed\'s name', trigger: 'blur'},
   ],
   description: [
-    {required: true, message: 'Введите описание', trigger: 'blur'},
-    { min: 10, message: 'Минимум 10 символов', trigger: 'blur' },
+    {required: true, message: 'Enter a description', trigger: 'blur'},
+    { min: 10, message: '10 symbols min', trigger: 'blur' },
   ],
 })
 

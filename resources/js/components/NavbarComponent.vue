@@ -11,18 +11,18 @@
     </el-menu-item>
 
     <el-sub-menu index="1">
-      <template #title>Разделы</template>
+      <template #title>Pages</template>
       <el-menu-item index="1-2">
-        <router-link to="/cats">Список кошек</router-link>
+        <router-link to="/cats">Cats List</router-link>
       </el-menu-item>
       <el-menu-item index="1-3">
-        <router-link to="/breeds">Список пород</router-link>
+        <router-link to="/breeds">Breeds List</router-link>
       </el-menu-item>
       <el-menu-item index="1-4">
-        <router-link to="/editCat/0">Добавить кошку</router-link>
+        <router-link to="/editCat/0">Add a Cat</router-link>
       </el-menu-item>
       <el-menu-item index="1-5">
-        <router-link to="/editBreed/0">Добавить породу</router-link>
+        <router-link to="/editBreed/0">Add a Breed</router-link>
       </el-menu-item>
     </el-sub-menu>
 

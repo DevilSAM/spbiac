@@ -7,8 +7,8 @@
 
           <template #header>
             <div class="card-header">
-              <h2 v-if="route.params.id > 0">Редактировать котейку</h2>
-              <h2 v-else>Добавить котейку</h2>
+              <h2 v-if="route.params.id > 0">Edit the cat</h2>
+              <h2 v-else>Add a cat</h2>
             </div>
           </template>
 
@@ -18,28 +18,28 @@
             :rules="rules"
             label-width="120px"
           >
-            <el-form-item label="Имя" prop="name">
+            <el-form-item label="Name" prop="name">
               <el-input v-model="form.name" />
             </el-form-item>
 
-            <el-form-item label="Порода" prop="breed_id">
-              <el-select v-model="form.breed_id" placeholder="Выбрать породу кошки" class="w-100">
+            <el-form-item label="Breed" prop="breed_id">
+              <el-select v-model="form.breed_id" placeholder="Choose a cat's breed" class="w-100">
                 <el-option :label="breed.name" :value="breed.id" v-model="form.breed_id" v-for="breed in breeds" />
               </el-select>
             </el-form-item>
 
-            <el-form-item label="Возраст" prop="age">
+            <el-form-item label="Age" prop="age">
               <el-input-number v-model="form.age" :min="1" :max="100" />
             </el-form-item>
 
-            <el-form-item label="Фото" prop="image">
+            <el-form-item label="Photo" prop="image">
               <el-image :src="`${form.image}`" :fit="`cover`" class="cat-photo me-3" v-if="form.image"/>
-              <span v-else class="me-3">Нажми, чтобы обновить фото -> </span>
+              <span v-else class="me-3">Press to change photo -> </span>
               <Refresh style="width: 2rem; height: 2rem; margin-right: 8px" class="hover-pointed" @click="refreshPhoto" v-if="!loading" />
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="onSubmit(formRef)" :disabled="!savingAllowed">Сохранить</el-button>
+              <el-button type="primary" @click="onSubmit(formRef)" :disabled="!savingAllowed">Save</el-button>
             </el-form-item>
 
           </el-form>
@@ -67,13 +67,13 @@ const formRef = ref<FormInstance>()
 // правила для валидации формы
 const rules = reactive<FormRules>({
   name: [
-    {required: true, message: 'Введите название породы', trigger: 'blur'},
+    {required: true, message: 'Enter a cat\'s name', trigger: 'blur'},
   ],
   breed_id: [
-    {required: true, message: 'Выберите из выпадающего меню', trigger: 'blur'},
+    {required: true, message: 'Choose from a dropdown', trigger: 'blur'},
   ],
   image: [
-    {required: true, message: 'Нажмите на иконку "refresh", чтобы получить фото', trigger: 'blur'},
+    {required: true, message: 'Press refresh icon, to get new photo', trigger: 'blur'},
   ],
 })
 
@@ -100,7 +100,7 @@ const getCatData = (id: any) => {
   .then((res: any)=>{
     // если редирект
     if(res.data.redirect) {
-      alert('Ошибка! Котейка не найден.')
+      alert('Error! The cat not found')
       router.push('/cats')
     }
 
