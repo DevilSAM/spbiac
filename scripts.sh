@@ -14,6 +14,13 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
+docker-compose exec app php artisan storage:link
+status=$?
+if [ $status -ne 0 ]; then
+  echo "Failed to start key:generate: $status"
+  exit $status
+fi
+
 docker-compose exec app php artisan migrate
 status=$?
 if [ $status -ne 0 ]; then
