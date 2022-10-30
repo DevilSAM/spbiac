@@ -5,7 +5,7 @@
         <font-awesome-icon icon="fa-solid fa-paper-plane" size="2x"/>
       </el-button>
     </a>
-    <a href="https://t.me/MagicDragony" target="_blank" class="mx-4">
+    <a href="https://www.instagram.com/devilsam84/" target="_blank" class="mx-4">
       <el-button type="warning" size="large" >
         <font-awesome-icon icon="fa-brands fa-instagram" size="2x"/>
       </el-button>
