@@ -28,7 +28,7 @@
             </el-form-item>
 
             <el-form-item label="Long Life" prop="long_life">
-              <el-input-number v-model="form.long_life" :min="1" :max="10" />
+              <el-input-number v-model="form.long_life" :min="1" :max="100" />
             </el-form-item>
 
             <el-form-item>
