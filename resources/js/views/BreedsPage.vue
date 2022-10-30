@@ -22,14 +22,14 @@
                 <el-button
                   size="small"
                   type="primary"
-                >Change</el-button>
+                >Change<el-icon class="ms-2"><Edit /></el-icon></el-button>
               </router-link>
               <el-button
                 class="ms-3"
                 size="small"
                 type="danger"
                 @click="deleteBreed(scope.row.id, scope.$index)"
-              >Delete</el-button>
+              >Delete<el-icon class="ms-2"><Delete /></el-icon></el-button>
             </template>
           </el-table-column>
         </el-table>
