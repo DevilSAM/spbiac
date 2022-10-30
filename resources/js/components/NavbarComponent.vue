@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    class="el-menu-demo"
+    class="header"
     mode="horizontal"
     :ellipsis="false"
   >

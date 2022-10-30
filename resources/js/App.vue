@@ -4,10 +4,10 @@
       <el-header class="px-0">
         <navbar-component></navbar-component>
       </el-header>
-      <el-main>
+      <el-main class="main">
         <router-view></router-view>
       </el-main>
-      <el-footer class="px-0">
+      <el-footer class="px-0" height="100px">
         <footer-component></footer-component>
       </el-footer>
     </el-container>
@@ -25,14 +25,17 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .vh-100 {
   min-height: 100vh;
 }
 .container {
   height: 100vh;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5ece4 50%, #ffffff 100%);
   padding-left: 0;
   padding-right: 0;
+
+  .main {
+    background:  #FFFFFF;
+  }
 }
 </style>
